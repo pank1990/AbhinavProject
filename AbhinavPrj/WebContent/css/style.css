@@ -1,0 +1,209 @@
+/* Top right Menu */
+.top-right-menu li.attachments-menu-title {
+    position: static;
+}
+.top-right-menu {
+    position: relative;
+}
+li.dropdown.attachments-menu-title.menu-open {
+    border: 1px solid rgba(0,0,0,.15);
+    border-bottom: none;
+}
+/* li.dropdown.attachments-menu-title.menu-open a{
+	background-color: #fff;
+} */
+.attachments-menu {
+    position: absolute;
+    top: 100%;
+    z-index: 1000;
+    min-width: 160px;
+	display: none;
+    margin: 0;
+    right: 0;
+    width: 568px;
+    padding: 15px;
+    font-size: 14px;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+}
+.attachments-menu h2 {
+    font-size: 22px;
+    margin: 0;
+}
+.attachments-menu h2 {
+    font-size: 22px;
+    margin: 0;
+}
+.attachments-menu p {
+    margin: 10px 0;
+    font-size: 14px;
+}
+.desc-title {
+    font-size: 14px;
+    background-color: #d1c9be;
+    padding: 10px 5px;
+	margin: 0;
+}
+.attachments-group h3 {
+    font-size: 13px;
+    margin: 0;
+}
+.attachments-group {
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+}
+.attachments-group h3 span {
+    margin-right: 10px;
+}
+.attachment-list{
+	margin: 10px 0 0;
+	list-style: none;
+	padding: 0;
+}
+.attachment-list li > span, .photo-attachment > span {
+    display: inline-block;
+	vertical-align: middle;
+	margin-right: 5px;
+}
+.attachment-list li {
+    padding: 7px 7px 7px 30px;
+	position: relative;
+}
+.attachment-list li:before {
+	content: '';
+	position: absolute;
+	background: url('../list.png') no-repeat center center;
+	top: 50%;
+    left: 5px;
+    width: 7px;
+    height: 28px;
+    background-size: cover;
+    transform: translateY(-50%);
+}
+.attachment-list li:nth-child(2n+1) {
+    background-color: #ddd;
+}
+.attachment-list li:last-child {
+    margin: 0;
+}
+.attachment-list h6 {
+    margin: 0;
+	color: #0170ca;
+}
+.attachment-list span {
+    display: block;
+	font-size: 13px;
+}
+.cancel-action {
+    background-color: #0170ca;
+    color: #fff;
+    border-radius: 100%;
+    display: inline-block;
+    font-size: 13px;
+    text-align: center;
+    width: 15px;
+    height: 15px;
+	line-height: 15px;
+}
+.close-btn, .close-popup {
+    float: right;
+    font-size: 25px;
+}
+.close-btn a{
+    text-decoration: none;
+}
+.notification-count {
+    background-color: #0170ca;
+    color: #fff;
+    width: 16px;
+    height: 16px;
+    display: block;
+    float: left;
+    font-size: 10px;
+    border-radius: 100%;
+    line-height: 16px;
+	margin-top: 2px;
+	margin-right: 5px;
+    text-align: center;
+}
+.actions a {
+    margin: 0 4px;
+    display: block;
+    float: left;
+}
+.cancel-action:hover,.cancel-action:focus {
+    color: #fff;
+    text-decoration: none;
+}
+.attachment-popup {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    padding: 15px;
+    display: none;
+}
+.attachment-popup h3 {
+    font-size: 13px;
+    margin: 10px 0;
+}
+.form-row label {
+    width: 100%;
+    font-size: 13px;
+    margin: 5px 0;
+}
+.form-row input, .form-row select {
+	width: 100%;
+    max-width: 320px;
+    padding: 5px;
+    font-size: 13px;
+    height: 32px;
+}
+.photo-attachment {
+    margin: 0 0 5px;
+    background-color: #ddd;
+    padding: 5px;
+}
+.form-row {
+    padding: 5px 0;
+}
+.green-btn {
+    background-color: #41bf3b;
+    border: 1px solid #41bf3b;
+    color: #fff;
+    width: auto !important;
+    display: inline-block;
+    padding: 0 10px !important;
+}
+
+
+@media (max-width: 768px){
+#top-dropdown-menu .navbar-nav>li {
+    float: left;
+}
+.attachments-menu{
+	width: 420px;
+	right: 5px;
+}
+}
+@media (max-width: 480px){
+.attachment-list li> .attachment-details {
+    display: block;
+    float: none;
+    margin-top: 8px;
+}
+.attachments-menu{
+	width: 300px;
+}
+}
+.fa-4x{
+color:#337ab7 !important;	
+}

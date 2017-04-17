@@ -1,0 +1,146 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Tests</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="" />
+<link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/angular.min.js"></script>
+<!-- Custom Theme files -->
+<link href="css/style.css" rel='stylesheet' type='text/css' />
+<!----font-Awesome----->
+<link href="css/font-awesome.css" rel="stylesheet"> 
+</head>
+<body ng-app="myDemo">
+ <div class="navbar navbar-inverse-blue navbar" id="top-dropdown-menu" ng-controller="myDemoCtrl">
+      <div class="navbar-inner">
+        <div class="container">
+          <div class="pull-right">
+          	<nav class="navbar nav_bottom" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+		   <!-- Top right Menu -->
+		    <div class="">
+		        <ul class="nav top-right-menu navbar-nav">
+		            <li class="dropdown attachments-menu-title"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"><span class="notification-count">4</span>Attachments<span class="caret"></span></a>
+						<div class="attachments-menu" role="menu">
+							<h2>Repair Order Attachments<span class="close-btn"><a href="javascript:void(0);">&times;</a></span></h2>
+							<p><i>Move jobs to other attachments is necessary</i></p>
+							<h5 class="desc-title">Description</h5>
+							<div ng-repeat="joblist in joblists">
+							<div class="attachments-group">
+								<h3><span>{{joblist.type}}</span><a href="javascript:void(0);" class="attachment-link">Add Attachment</a></h3>
+								<ul class="attachment-list">
+									<li ng-repeat="attachment in joblist.attachments">
+										<span class="actions">
+											<a class="edit-action" href="#">Edit</a>
+											<a class="save-action" href="#"><i class="fa fa-floppy-o fa-lg" aria-hidden="true"></i></a>
+											<a class="cancel-action" href="#"><i class="fa fa-times-circle fa-lg" aria-hidden="false"></i></a>
+										</span>
+										<span ng-if="'png'==attachment.contentType"><img src="test-img.jpg" width="48" height="48"></span>
+										<span ng-if="'img'==attachment.contentType"><i class="fa fa-file-o fa-4x" aria-hidden="true"></i></span>
+										<span class="attachment-details">
+											<h6>{{attachment.name}}</h6>
+											<span>{{attachment.contentType==="png" ? "Photo" : "Reporting Document"}}</span>
+											<span>{{attachment.enterOn | date:'EEEE,MMM dd, yyyy, HH:mm'}}</span>
+										</span>
+									</li>
+								</ul>
+							</div>
+							</div>
+							<div class="attachment-popup">
+								<h2>Add Attachment:<span class="close-popup"><a href="javascript:void(0);">&times;</a></span></h2>
+								<h3>PM DE1 - Heavy Duty Diesel - Federal Annual Inspection</h3>
+								<form>
+									<div class="form-row">
+										<label>Attachment Name</label>
+										<input type="text"  name="attachmentName" value="My Photo">
+									</div>
+									<div class="form-row">
+										<label>Attachment Type</label>
+										<select type="text"  name="attachmentName" value="My Photo">								
+											<option value="">Select Attachment Type</option>
+											<option selected value="">Picture of Photo</option>
+											<option value="">Picture of Document</option>
+										</select>
+									</div>
+									<div class="form-row">
+										<label>Photo</label>
+										<div class="photo-attachment">
+											<span class="actions">
+												<a class="add-action" href="#">Try Again</a>
+											</span>
+											<span><img src="test-img.jpg" width="48" height="48"></span>
+											<span class="attachment-details">
+												<span>Tuesday, Jan 27, 2016, 7:24am</span>
+											</span>
+										</div>
+									</div>
+									<div class="form-row">
+										<input class="green-btn" type="submit" value="Finish">
+										<a href="javascript:void(0);" class="cancel-btn">Cancel</a>
+									</div>
+								</form>
+							</div>
+						</div>
+					</li>
+		            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="notification-count">2</span>Parts<span class="caret"></span></a>
+						<!-- <ul class="dropdown-menu" role="menu">
+							<li><a href="upcoming-events.html">Test Parts1</a></li>
+							<li><a href="completed-events.html">Test Parts2</a></li>
+						</ul> -->
+					</li>
+		        </ul>
+		     </div><!-- /.navbar-collapse -->
+		    </nav>
+		   </div>
+          <div class="clearfix"> </div>
+        </div>
+      </div>
+    </div>
+	<div class="col-md-12">
+	Aenean nonummy hendrerit mau phasellu porta. Fusce suscipit varius mi sed. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean nonummy hendrerit mau phasellu porta. Fusce suscipit varius mi sed. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean nonummy hendrerit mau phasellu porta. Fusce suscipit varius mi sed. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean nonummy hendrerit mau phasellu porta. Fusce suscipit varius mi sed. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+	</div>
+
+	<script>
+	var appl=angular.module("myDemo",[]);
+	appl.controller("myDemoCtrl",function($scope, $http){
+	
+	$http.get("jsonFile/data.json").then(function(response){
+		$scope.joblists=response.data.repairOrder.joblist;
+	console.log(response.data.repairOrder);
+	},function(response){
+	$scope.content="Error";
+	});
+	});
+	</script>	
+<script>
+$(document).ready(function(){
+	var w_width = $(window).width();
+		$('.attachments-menu').css({'width': w_width * 0.45});
+	
+    $(document).delegate(".dropdown a",'click',function(e){
+		$(this).next('.attachments-menu').slideDown("fast");
+		$(this).parents('.attachments-menu-title').addClass('menu-open');
+	});
+    $(document).delegate(".close-btn a",'click',function(e){
+		$(this).parents('.attachments-menu').slideUp("fast");
+		$(this).parents('.attachments-menu-title').removeClass('menu-open');
+	});
+    $(document).delegate(".attachment-link",'click',function(e){console.log(23);
+		$('.attachment-popup').slideDown("fast");
+	});
+    $(document).delegate(".close-popup a, .cancel-btn",'click',function(e){console.log(23);
+		$('.attachment-popup').slideUp("fast");
+	});
+});
+$(window).resize(function(){
+	var w_width = $(window).width();
+		$('.attachments-menu').css({'width': w_width * 0.45});
+});
+</script>
+</body>
+</html>		
