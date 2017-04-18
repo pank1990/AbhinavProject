@@ -6,16 +6,32 @@
         "attachments": [
           {
             "name": "Attachment Name",
-            "contentType": "png",
+            "contentType": "pdf",
             "enterOn": 1486672200000
           },
           {
             "name": "Attachment Name1",
-            "contentType": "img",
+            "contentType": "excel",
+            "enterOn": 1492288200000
+          },
+          {
+            "name": "Attachment Name2",
+            "contentType": "msword",
+            "enterOn": 1492288200000
+          },
+          {
+            "name": "Attachment Name3",
+            "contentType": "email",
+            "enterOn": 1492288200000
+          },
+          {
+            "name": "Attachment Name4",
+            "contentType": "document",
             "enterOn": 1492288200000
           }
         ]
-      },
+      }
+     ,
       {
         "type": "D-BATTERY",
         "attachments": [

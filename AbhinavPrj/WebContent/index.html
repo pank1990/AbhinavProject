@@ -25,9 +25,9 @@
 		   <!-- Top right Menu -->
 		    <div class="">
 		        <ul class="nav top-right-menu navbar-nav">
-		            <li class="dropdown attachments-menu-title"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"><span class="notification-count">4</span>Attachments<span class="caret"></span></a>
-						<div class="attachments-menu" role="menu">
-							<h2>Repair Order Attachments<span class="close-btn"><a href="javascript:void(0);">&times;</a></span></h2>
+		            <li class="dropdown attachments-menu-title"><a href="#" ng-click="toggle1=!toggle1" class="dropdown-toggle" ng-init="toggle1=true"  ><span class="notification-count">4</span>Attachments<span class="caret"></span></a>
+						<div class="attachments-menu"  role="menu" resize ng-style="style()" data-slide-toggle="toggle1" >
+							<h2>Repair Order Attachments<span class="close-btn" ><a href="#" ng-click="toggle1=!toggle1" ng-init="toggle1=true">&times;</a></span></h2>
 							<p><i>Move jobs to other attachments is necessary</i></p>
 							<h5 class="desc-title">Description</h5>
 							<div ng-repeat="joblist in joblists">
@@ -40,11 +40,14 @@
 											<a class="save-action" href="#"><i class="fa fa-floppy-o fa-lg" aria-hidden="true"></i></a>
 											<a class="cancel-action" href="#"><i class="fa fa-times-circle fa-lg" aria-hidden="false"></i></a>
 										</span>
-										<span ng-if="'png'==attachment.contentType"><img src="test-img.jpg" width="48" height="48"></span>
-										<span ng-if="'img'==attachment.contentType"><i class="fa fa-file-o fa-4x" aria-hidden="true"></i></span>
+										<span ng-if="'pdf'==attachment.contentType"><img src="pdf.jpg" width="48" height="48"></span>
+										<span ng-if="'excel'==attachment.contentType"><img src="excel.jpg" width="48" height="48"></span>
+										<span ng-if="'msword'==attachment.contentType"><img src="word.jpg" width="48" height="48"></span>
+										<span ng-if="'email'==attachment.contentType"><img src="email.jpg" width="48" height="48"></span>
+										<span ng-if="'document'==attachment.contentType"><img src="document.jpg" width="48" height="48"></span>
 										<span class="attachment-details">
 											<h6>{{attachment.name}}</h6>
-											<span>{{attachment.contentType==="png" ? "Photo" : "Reporting Document"}}</span>
+											<span>{{attachment.contentType==="pdf" ? "Photo" : attachment.contentType==="excel"?"Excel File":attachment.contentType==="msword"?"MS Word":attachment.contentType==="email"?"E-Mail":"Reporting Document"}}</span>
 											<span>{{attachment.enterOn | date:'EEEE,MMM dd, yyyy, HH:mm'}}</span>
 										</span>
 									</li>
@@ -108,7 +111,6 @@
 	<script>
 	var appl=angular.module("myDemo",[]);
 	appl.controller("myDemoCtrl",function($scope, $http){
-	
 	$http.get("jsonFile/data.json").then(function(response){
 		$scope.joblists=response.data.repairOrder.joblist;
 	console.log(response.data.repairOrder);
@@ -116,30 +118,56 @@
 	$scope.content="Error";
 	});
 	});
+	appl.directive('resize', function ($window) {
+	    return function (scope, element) {
+	        var w = angular.element($window);
+	        scope.getWindowDimensions = function () {
+	            return {
+	                'w': w.width()
+	            };
+	        };
+	        scope.$watch(scope.getWindowDimensions, function (newValue, oldValue) {
+	            scope.windowWidth = newValue.w;
+	            scope.style = function () {
+	                return {
+	                        'width': (newValue.w * .45) + 'px'
+	                };
+	            };
+	        }, true);
+	        w.bind('resize', function () {
+	            scope.$apply();
+	        });
+	    }
+	});
+	appl.directive('slideToggle', function() {  
+		  return {
+		    scope:{
+		      isOpen: "=slideToggle"
+		    },  
+		    link: function(scope, element, attr) {
+		      var slideDuration =  400; 
+		      if (attr.startShown=="false") {
+		                element.hide();
+		            }
+		      scope.$watch('isOpen', function(newVal,oldVal){
+		        if(newVal !== oldVal){ 
+		          element.stop().slideToggle(slideDuration);
+		        }
+		      });
+		    }
+		  };  
+		});
+
 	</script>	
 <script>
-$(document).ready(function(){
-	var w_width = $(window).width();
-		$('.attachments-menu').css({'width': w_width * 0.45});
 	
-    $(document).delegate(".dropdown a",'click',function(e){
-		$(this).next('.attachments-menu').slideDown("fast");
-		$(this).parents('.attachments-menu-title').addClass('menu-open');
-	});
-    $(document).delegate(".close-btn a",'click',function(e){
-		$(this).parents('.attachments-menu').slideUp("fast");
-		$(this).parents('.attachments-menu-title').removeClass('menu-open');
-	});
-    $(document).delegate(".attachment-link",'click',function(e){console.log(23);
-		$('.attachment-popup').slideDown("fast");
-	});
-    $(document).delegate(".close-popup a, .cancel-btn",'click',function(e){console.log(23);
-		$('.attachment-popup').slideUp("fast");
-	});
+$(document).ready(function(){
+$(document).delegate(".attachment-link",'click',function(e){console.log(23);
+$('.attachment-popup').slideDown("fast");
 });
-$(window).resize(function(){
-	var w_width = $(window).width();
-		$('.attachments-menu').css({'width': w_width * 0.45});
+$(document).delegate(".close-popup a, .cancel-btn",'click',function(e){console.log(23);
+$('.attachment-popup').slideUp("fast");
+});
 });
 </script>
 </body>
