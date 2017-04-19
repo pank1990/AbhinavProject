@@ -40,11 +40,7 @@
 											<a class="save-action" href="#"><i class="fa fa-floppy-o fa-lg" aria-hidden="true"></i></a>
 											<a class="cancel-action" href="#"><i class="fa fa-times-circle fa-lg" aria-hidden="false"></i></a>
 										</span>
-										<span ng-if="'pdf'==attachment.contentType"><img src="pdf.jpg" width="48" height="48"></span>
-										<span ng-if="'excel'==attachment.contentType"><img src="excel.jpg" width="48" height="48"></span>
-										<span ng-if="'msword'==attachment.contentType"><img src="word.jpg" width="48" height="48"></span>
-										<span ng-if="'email'==attachment.contentType"><img src="email.jpg" width="48" height="48"></span>
-										<span ng-if="'document'==attachment.contentType"><img src="document.jpg" width="48" height="48"></span>
+									<span><img src="{{getImage(attachment.contentType)}}" width="48" height="48"></span>
 										<span class="attachment-details">
 											<h6>{{attachment.name}}</h6>
 											<span>{{attachment.contentType==="pdf" ? "Photo" : attachment.contentType==="excel"?"Excel File":attachment.contentType==="msword"?"MS Word":attachment.contentType==="email"?"E-Mail":"Reporting Document"}}</span>
@@ -113,10 +109,19 @@
 	appl.controller("myDemoCtrl",function($scope, $http){
 	$http.get("jsonFile/data.json").then(function(response){
 		$scope.joblists=response.data.repairOrder.joblist;
-	console.log(response.data.repairOrder);
+	//console.log(response.data.repairOrder);
 	},function(response){
 	$scope.content="Error";
 	});
+	$scope.getImage=function(type){
+		var imageType={};
+		imageType["pdf"]="pdf.jpg";
+		imageType["excel"]="excel.jpg";
+		imageType["msword"]="word.jpg";
+		imageType["email"]="email.jpg";
+		imageType["document"]="document.jpg";
+		return imageType[type];
+	}
 	});
 	appl.directive('resize', function ($window) {
 	    return function (scope, element) {
