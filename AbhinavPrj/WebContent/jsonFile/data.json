@@ -11,7 +11,7 @@
           },
           {
             "name": "Attachment Name1",
-            "contentType": "excel",
+             "contentType": "Application/vnd.Ms-excel",
             "enterOn": 1492288200000
           },
           {

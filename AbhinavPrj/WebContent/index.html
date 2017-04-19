@@ -40,7 +40,7 @@
 											<a class="save-action" href="#"><i class="fa fa-floppy-o fa-lg" aria-hidden="true"></i></a>
 											<a class="cancel-action" href="#"><i class="fa fa-times-circle fa-lg" aria-hidden="false"></i></a>
 										</span>
-									<span><img ng-src="{{getImage(attachment.contentType)}}" width="48" height="48" /></span>
+									<span><img ng-src="{{attachment.contentType | getImage}}" width="48" height="48" /></span>
 										<span class="attachment-details">
 											<h6>{{attachment.name}}</h6>
 											<span>{{attachment.contentType==="pdf" ? "Photo" : attachment.contentType==="excel"?"Excel File":attachment.contentType==="msword"?"MS Word":attachment.contentType==="email"?"E-Mail":"Reporting Document"}}</span>
@@ -113,23 +113,26 @@
 	},function(response){
 	$scope.content="Error";
 	});
-	$scope.getImage=function(type){
-		var imageType={};
-		imageType["pdf"]="pdf.jpg";
-		imageType["excel"]="excel.jpg";
-		imageType["msword"]="word.jpg";
-		imageType["email"]="email.jpg";
-		imageType["document"]="document.jpg";
-		console.log(type);
-		var path;
-			if(imageType[type]==null || imageType[type]==undefined){
-				path="test-img.jpg";
-			}else{
-				path=imageType[type];
-			}
+	});
+	appl.filter('getImage',function(){
 		
-		return path;
-	}
+		return function(type){
+			var path;
+			if(type.includes("pdf")){
+				path="pdf.jpg";
+			}else if(type.includes("excel")){
+				path="excel.jpg";
+			}else if(type.includes("word")){
+				path="word.jpg";
+			}else if(type.includes("email")){
+				path="email.jpg";
+			}else if(type.includes("document")){
+				path="document.jpg";
+			}else{
+				path="test-img.jpg";;
+			}
+			return path;
+		}
 	});
 	appl.directive('resize', function ($window) {
 	    return function (scope, element) {
