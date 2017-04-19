@@ -40,7 +40,7 @@
 											<a class="save-action" href="#"><i class="fa fa-floppy-o fa-lg" aria-hidden="true"></i></a>
 											<a class="cancel-action" href="#"><i class="fa fa-times-circle fa-lg" aria-hidden="false"></i></a>
 										</span>
-									<span><img src="{{getImage(attachment.contentType)}}" width="48" height="48"></span>
+									<span><img ng-src="{{getImage(attachment.contentType)}}" width="48" height="48" /></span>
 										<span class="attachment-details">
 											<h6>{{attachment.name}}</h6>
 											<span>{{attachment.contentType==="pdf" ? "Photo" : attachment.contentType==="excel"?"Excel File":attachment.contentType==="msword"?"MS Word":attachment.contentType==="email"?"E-Mail":"Reporting Document"}}</span>
@@ -120,7 +120,15 @@
 		imageType["msword"]="word.jpg";
 		imageType["email"]="email.jpg";
 		imageType["document"]="document.jpg";
-		return imageType[type];
+		console.log(type);
+		var path;
+			if(imageType[type]==null || imageType[type]==undefined){
+				path="test-img.jpg";
+			}else{
+				path=imageType[type];
+			}
+		
+		return path;
 	}
 	});
 	appl.directive('resize', function ($window) {
