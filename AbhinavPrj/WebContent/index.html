@@ -13,7 +13,10 @@
 <!-- Custom Theme files -->
 <link href="css/style.css" rel='stylesheet' type='text/css' />
 <!----font-Awesome----->
-<link href="css/font-awesome.css" rel="stylesheet"> 
+<link href="css/font-awesome.css" rel="stylesheet">
+ <!----implementation----->
+ 
+ 
 </head>
 <body ng-app="myDemo">
  <div class="navbar navbar-inverse-blue navbar" id="top-dropdown-menu" ng-controller="myDemoCtrl">
@@ -103,88 +106,6 @@
 	<div class="col-md-12">
 	Aenean nonummy hendrerit mau phasellu porta. Fusce suscipit varius mi sed. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean nonummy hendrerit mau phasellu porta. Fusce suscipit varius mi sed. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean nonummy hendrerit mau phasellu porta. Fusce suscipit varius mi sed. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean nonummy hendrerit mau phasellu porta. Fusce suscipit varius mi sed. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
 	</div>
-
-	<script>
-	var appl=angular.module("myDemo",[]);
-	appl.controller("myDemoCtrl",function($scope, $http){
-	$http.get("jsonFile/data.json").then(function(response){
-		$scope.joblists=response.data.repairOrder.joblist;
-	//console.log(response.data.repairOrder);
-	},function(response){
-	$scope.content="Error";
-	});
-	});
-	appl.filter('getImage',function(){
-		
-		return function(type){
-			var path;
-			if(type.includes("pdf")){
-				path="pdf.jpg";
-			}else if(type.includes("excel")){
-				path="excel.jpg";
-			}else if(type.includes("word")){
-				path="word.jpg";
-			}else if(type.includes("email")){
-				path="email.jpg";
-			}else if(type.includes("document")){
-				path="document.jpg";
-			}else{
-				path="test-img.jpg";;
-			}
-			return path;
-		}
-	});
-	appl.directive('resize', function ($window) {
-	    return function (scope, element) {
-	        var w = angular.element($window);
-	        scope.getWindowDimensions = function () {
-	            return {
-	                'w': w.width()
-	            };
-	        };
-	        scope.$watch(scope.getWindowDimensions, function (newValue, oldValue) {
-	            scope.windowWidth = newValue.w;
-	            scope.style = function () {
-	                return {
-	                        'width': (newValue.w * .45) + 'px'
-	                };
-	            };
-	        }, true);
-	        w.bind('resize', function () {
-	            scope.$apply();
-	        });
-	    }
-	});
-	appl.directive('slideToggle', function() {  
-		  return {
-		    scope:{
-		      isOpen: "=slideToggle"
-		    },  
-		    link: function(scope, element, attr) {
-		      var slideDuration =  400; 
-		      if (attr.startShown=="false") {
-		                element.hide();
-		            }
-		      scope.$watch('isOpen', function(newVal,oldVal){
-		        if(newVal !== oldVal){ 
-		          element.stop().slideToggle(slideDuration);
-		        }
-		      });
-		    }
-		  };  
-		});
-
-	</script>	
-<script>
-	
-$(document).ready(function(){
-$(document).delegate(".attachment-link",'click',function(e){console.log(23);
-$('.attachment-popup').slideDown("fast");
-});
-$(document).delegate(".close-popup a, .cancel-btn",'click',function(e){console.log(23);
-$('.attachment-popup').slideUp("fast");
-});
-});
-</script>
 </body>
+<script src="js/util.js"></script>
 </html>		

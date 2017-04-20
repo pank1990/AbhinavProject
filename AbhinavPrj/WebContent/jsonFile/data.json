@@ -6,17 +6,17 @@
         "attachments": [
           {
             "name": "Attachment Name",
-            "contentType": "pdf",
+            "contentType": "appication.pdf",
             "enterOn": 1486672200000
           },
           {
             "name": "Attachment Name1",
-             "contentType": "Application/vnd.Ms-excel",
+             "contentType": "application/vdn.msexcel",
             "enterOn": 1492288200000
           },
           {
             "name": "Attachment Name2",
-            "contentType": "msword",
+            "contentType": "application/msword",
             "enterOn": 1492288200000
           },
           {
@@ -26,7 +26,7 @@
           },
           {
             "name": "Attachment Name4",
-            "contentType": "document",
+            "contentType": "application.ppt",
             "enterOn": 1492288200000
           }
         ]
