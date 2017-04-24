@@ -1,11 +1,13 @@
 var appl=angular.module("myDemo",[]);
 appl.controller("myDemoCtrl",function($scope, $http){
+	
 	$http.get("jsonFile/data.json").then(function(response){
 		$scope.joblists=response.data.repairOrder.joblist;
 	//console.log(response.data.repairOrder);
 	},function(response){
 	$scope.content="Error";
 	});
+	$scope.cdate = new Date();
 	});
 
 appl.directive('resize', function ($window) {

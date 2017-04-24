@@ -55,7 +55,7 @@
 							</div>
 							<div class="attachment-popup">
 								<h2>Add Attachment:<span class="close-popup"><a href="javascript:void(0);">&times;</a></span></h2>
-								<h3>PM DE1 - Heavy Duty Diesel - Federal Annual Inspection</h3>
+								<h3 class="headerInfo"></h3>
 								<form>
 									<div class="form-row">
 										<label>Attachment Name</label>
@@ -72,8 +72,8 @@
 									<div class="form-row upload-photo">
 										<label>Upload file or <a href="#">Take a Photo</a></label>
 										<div class="photo-attachment-grp">
-											<div class="file-name">No file Choosen</div>
-											<span class="browse-btn"><a href="javascript:void(0);">Browse<input type="file" name="photo" value="browse" onchange="$(this).parents('.form-row').find('.file-name').html($(this).val());"></a></span>
+											<input type="text" class="file-name" name="attachmentName" placeholder="No file choosen">
+											<span class="browse-btn"><a href="javascript:void(0);">Browse<input type="file" class="browse-file" id="fileLoad" name="photo" value="browse"></a></span>
 										</div>
 									</div>
 									<div>
@@ -85,7 +85,7 @@
 											</span>
 											<span><img src="test-img.jpg" width="48" height="48"></span>
 											<span class="attachment-details">
-												<span>Tuesday, Jan 27, 2016, 7:24am</span>
+												<span>{{cdate | date:'EEEE,MMM dd, yyyy, HH:mm'}}</span>
 											</span>
 										</div>
 									</div>
@@ -122,6 +122,7 @@
 $(document).ready(function(){
 
     $(document).delegate(".attachment-link",'click',function(){
+    	$(".headerInfo").text($(this).siblings('span:first').text());
 		$('.attachment-popup').slideDown("fast");
 		$('.attachment-popup').addClass('upload-form');
 	});
@@ -134,6 +135,10 @@ $(document).ready(function(){
 	});
     $(document).delegate(".retry-attachment",'click',function(){
 		$('.attachment-popup').removeClass('preview-form').addClass('upload-form');
+	});
+    $(document).delegate(".browse-file",'change',function(){
+    	var filePath=$("#fileLoad").val();
+				$('.file-name').val(filePath);
 	});
 });
 

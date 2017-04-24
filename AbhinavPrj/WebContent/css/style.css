@@ -200,7 +200,7 @@ li.dropdown.attachments-menu-title.menu-open {
     overflow: hidden;
 	padding: 0 5px;
 }
-.file-name {
+.photo-attachment-grp .file-name {
     /* display: table-cell; */
     width: 65%;
     padding: 5px 10px;
