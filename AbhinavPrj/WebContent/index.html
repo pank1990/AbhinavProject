@@ -69,11 +69,19 @@
 											<option value="">Picture of Document</option>
 										</select>
 									</div>
-									<div class="form-row">
+									<div class="form-row upload-photo">
+										<label>Upload file or <a href="#">Take a Photo</a></label>
+										<div class="photo-attachment-grp">
+											<div class="file-name">No file Choosen</div>
+											<span class="browse-btn"><a href="javascript:void(0);">Browse<input type="file" name="photo" value="browse" onchange="$(this).parents('.form-row').find('.file-name').html($(this).val());"></a></span>
+										</div>
+									</div>
+									<div>
+									<div class="form-row view-photo">
 										<label>Photo</label>
 										<div class="photo-attachment">
 											<span class="actions">
-												<a class="add-action" href="#">Try Again</a>
+												<a class="retry-attachment" href="javascript:void(0)">Try Again</a>
 											</span>
 											<span><img src="test-img.jpg" width="48" height="48"></span>
 											<span class="attachment-details">
@@ -81,8 +89,10 @@
 											</span>
 										</div>
 									</div>
+									<div class="clearfix"></div>
 									<div class="form-row">
-										<input class="green-btn" type="submit" value="Finish">
+										<input class="green-btn finish-btn" type="submit" value="Finish">
+										<input class="green-btn add-attachment-btn" type="submit" value="Add Attachment">
 										<a href="javascript:void(0);" class="cancel-btn">Cancel</a>
 									</div>
 								</form>
@@ -108,4 +118,24 @@
 	</div>
 </body>
 <script src="js/util.js"></script>
+<script>
+$(document).ready(function(){
+
+    $(document).delegate(".attachment-link",'click',function(){
+		$('.attachment-popup').slideDown("fast");
+		$('.attachment-popup').addClass('upload-form');
+	});
+    $(document).delegate(".close-popup a, .cancel-btn",'click',function(){
+		$('.attachment-popup').slideUp("fast");
+	});
+    $(document).delegate(".add-attachment-btn",'click',function(e){
+		e.preventDefault();
+		$('.attachment-popup').addClass('preview-form').removeClass('upload-form');
+	});
+    $(document).delegate(".retry-attachment",'click',function(){
+		$('.attachment-popup').removeClass('preview-form').addClass('upload-form');
+	});
+});
+
+</script>
 </html>		

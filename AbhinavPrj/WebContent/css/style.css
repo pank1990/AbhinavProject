@@ -183,7 +183,52 @@ li.dropdown.attachments-menu-title.menu-open {
     display: inline-block;
     padding: 0 10px !important;
 }
-
+/* upload and preview attachment */
+.upload-form .view-photo, .upload-form .finish-btn, .preview-form .upload-photo, .preview-form .add-attachment-btn {
+    display: none;
+}
+.preview-form .view-photo, .preview-form .finish-btn, .upload-form .upload-photo, .upload-form .add-attachment-btn {
+    display: block;
+}
+.preview-form .finish-btn, .upload-form .add-attachment-btn {
+    display: inline-block;
+}
+.browse-btn {
+    display: block;
+    width: 90px;
+    float: left;
+    overflow: hidden;
+	padding: 0 5px;
+}
+.file-name {
+    /* display: table-cell; */
+    width: 65%;
+    padding: 5px 10px;
+    max-width: 235px;
+    float: left;
+    height: 32px;
+    border: 1px solid #aaaaaa;
+}
+.browse-btn a{
+	width: 100%;
+	color: #fff;
+	height: 32px;
+	text-align: center;
+	line-height: 32px;
+	position: relative;
+	display: block;
+	cursor: pointer;
+	background-color: #0170ca;
+}
+.browse-btn input[type=file]{
+	width: 100%;
+	cursor: pointer;
+	position: absolute;
+	height: 32px;
+	opacity: 0;
+	top: 0;
+	left: 0;
+}
 
 @media (max-width: 768px){
 #top-dropdown-menu .navbar-nav>li {
