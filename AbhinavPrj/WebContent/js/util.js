@@ -17,6 +17,7 @@ appl.controller("myDemoCtrl",function($scope, $http){
 		this.picInfo=[{name:$scope.attachmentName,type:$scope.attachmentType}];
 		console.log(this.picInfo.name);
 	};
+
 	});
 
 appl.directive('resize', function ($window) {
@@ -77,4 +78,18 @@ appl.filter('getImage',function(){
 		}
 		return path;
 	};
+});
+
+appl.directive('fdInput', function ($timeout) {
+    return {
+        link: function (scope, element, attrs) {
+            element.on('change', function  (evt) {
+                var files = evt.target.files;
+                $(".file-name").val(files[0].name);
+                //scope.fileName=files[0].name;
+                console.log(files[0].name);
+                console.log(files[0].size);
+            });
+        }
+    };
 });
