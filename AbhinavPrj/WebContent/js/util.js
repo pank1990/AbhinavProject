@@ -1,4 +1,4 @@
-var appl=angular.module("myDemo",[]);
+	var appl=angular.module("myDemo",[]);
 appl.controller("myDemoCtrl",function($scope, $http){
 	
 	$http.get("jsonFile/data.json").then(function(response){
@@ -8,6 +8,15 @@ appl.controller("myDemoCtrl",function($scope, $http){
 	$scope.content="Error";
 	});
 	$scope.cdate = new Date();
+	$scope.attachmentName="My Photo";
+	$scope.attTypes=[{name:'Select Attachment Type' ,type:''},
+	                 {name:'Picture of Photo',type:'Picture'},
+	                 {name:'Picture of Document', type:'Document'}];
+	$scope.attachmentType=$scope.attTypes[1].type;
+	$scope.submit=function(){
+		this.picInfo=[{name:$scope.attachmentName,type:$scope.attachmentType}];
+		console.log(this.picInfo.name);
+	};
 	});
 
 appl.directive('resize', function ($window) {
@@ -67,5 +76,5 @@ appl.filter('getImage',function(){
 			path="document.jpg";;
 		}
 		return path;
-	}
+	};
 });
